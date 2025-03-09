@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice Classification</title>
+</head>
+<body>
+    <h1>🎙️ Human vs. Bot Voice Detection</h1>
+    <button onclick="startPrediction()">🎤 Start Speaking</button>
+    <h2 id="result"></h2>
+
+    <script>
+        function startPrediction() {
+            document.getElementById("result").innerText = "🎤 Listening...";
+            fetch('/predict')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("result").innerText = "Prediction: " + data.prediction;
+                })
+                .catch(error => console.error("Error:", error));
+        }
+    </script>
+</body>
+</html>
